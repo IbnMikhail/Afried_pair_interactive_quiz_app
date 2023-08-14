@@ -1,0 +1,234 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(42, 42, 78);
+}
+
+section.msg-container{
+    position: fixed;
+    display: none;
+    width: 48%;
+    height: 50vh;
+    left: 26%;
+    top: 25vh;
+    z-index: 1;
+    border-radius: 30px;
+    background-color: whitesmoke;
+    padding: 20px;
+    font-weight: bold;
+    animation: fadeIn 1s linear 1;
+}
+
+section.msg-container span.close{
+    float: right;
+}
+
+section.msg-container span.close, section.msg-container .msg-box button{
+    cursor: pointer;
+    transition: all ease-in-out;
+}
+
+section.msg-container .msg-box{
+    text-align: center;
+    margin-top: 15vh;
+}
+
+section.msg-container .msg-box h1{
+    margin-bottom: 10px;
+}
+
+section.msg-container .msg-box button{
+    margin: 25px;
+    color: white;
+    background-color: grey;
+    width: 25vw;
+    border: 2px solid grey;
+    border-radius: 25px;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+section.msg-container#correct .msg-box, section.msg-container#congrats .msg-box{
+    color: green;
+}
+
+section.msg-container#incorrect .msg-box{
+    color: red;
+}
+
+section.msg-container#timeout .msg-box{
+    color: mediumvioletred;
+}
+
+section.msg-container#start{
+    top: 0;
+    height: 100vh;
+    left: 0;
+    width: 100vw;
+    animation: fade;
+    background: rgb(42, 42, 78);
+    color: white;
+}
+
+.quiz-container{
+    width: 50vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3vh;
+    color: white;
+}
+
+.quiz-container h1{
+    margin-bottom: 5vh;
+}
+
+.quiz-container button{
+    cursor: pointer;
+    background-color: transparent;
+    transition: all ease-in-out;
+    color: white;
+}
+
+.quiz-container .quiz-data{
+    border: 2px solid whitesmoke;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.quiz-container .quiz-data .timer-area{
+    margin-bottom: 30px;
+}
+
+.quiz-container .quiz-data .qa-area{
+    text-align: center;
+}
+
+.quiz-container .quiz-data .qa-area .question-counter-area{
+    margin-bottom: 30px;
+    color: orange;
+}
+
+.quiz-container .quiz-data .qa-area .question-area{
+    margin-bottom: 30px;
+    font-size: 1.5vw;
+    color: yellow;
+    font-weight: bold;
+    font-family: cursive;
+}
+
+.quiz-container .quiz-data .qa-area .answer-area{
+    margin-bottom: 30px;
+}
+
+.quiz-container .quiz-data .qa-area .answer-area button{
+    width: 80%;
+    border-radius: 20px;
+    margin-bottom: 9px;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    font-family: cursive;
+}
+
+.quiz-container .quiz-data .navigator button{
+    width: 15vw;
+    height: 4vh;
+    padding-right: 5px;
+    overflow-x: hidden;
+}
+.quiz-container .quiz-data .navigator button:nth-child(2){
+    float: right;
+}
+
+@keyframes fadeIn {
+    from{
+        opacity: 0.1;
+        transform: rotate(180deg);
+    }
+    to{
+        opacity: 1.0;
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes fadeIn{
+    from{
+        opacity: 0.1;
+        transform: rotate(180deg);
+    }
+    to{
+        opacity: 1.0;
+        transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes fadeIn{
+    from{
+        opacity: 0.1;
+        transform: rotate(180deg);
+    }
+    to{
+        opacity: 1.0;
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeOut {
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0.0;
+    }
+}
+
+@-webkit-keyframes fadeOut{
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0.0;
+    }
+}
+
+@-moz-keyframes fadeIn{
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0.0;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    section.msg-container{
+        width: 80%;
+        left: 10%;
+    }
+    .quiz-container{
+        width: 96vw;
+        margin: 2vw;
+    }
+}
+
+@media screen and (max-width: 826px){
+    .quiz-container .quiz-data .qa-area .question-area{
+        font-size: 2vw;
+    }
+}
+
+@media screen and (max-width: 626px){
+    .quiz-container .quiz-data .qa-area .question-area{
+        font-size: 3vw;
+    }
+}
+
+@media screen and (max-width: 418px){
+    .quiz-container .quiz-data .qa-area .question-area{
+        font-size: 5vw;
+    }
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Quiz app</title>
+    <link rel="shortcut icon" type="image/jpg" href="images/robot.jpg" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <section class='msg-container' id='start'>  
+        <div class='msg-box'>    
+            <p>If you start this quiz, you can not be able to close it until completed.</p>  
+            <button onclick="closeMsg('start');startQuiz()">Start Quiz</button>  
+        </div>  
+    </section>
+
+    <section class='msg-container' id='correct'>  
+        <span class=close onclick="closeMsg('correct')">X(close)</span>  
+        <div class='msg-box'>   
+            <h1>Correct!!</h1>  
+            <p>Your answer is right.</p>  
+            <button onclick="closeMsg('correct')">Continue</button>  
+        </div>  
+    </section>
+
+    <section class='msg-container' id='incorrect'>  
+        <span class=close onclick="closeMsg('incorrect')">X(close)</span>  
+        <div class='msg-box'>   
+            <h1>Incorrect!!</h1>  
+            <p>Your answer is wrong.</p>  
+            <button onclick="closeMsg('incorrect')">Continue</button>  
+        </div>  
+    </section>
+
+    <section class='msg-container' id='timeout'>  
+        <span class=close onclick="closeMsg('timeout')">X(close)</span>  
+        <div class='msg-box'>   
+            <h1>Timeout!!</h1>  
+            <p>Sorry your time for this question has ellapsed.</p>  
+            <button onclick="closeMsg('timeout')">Continue</button>  
+        </div>  
+    </section>
+
+    <section class='msg-container' id='congrats'>  
+        <span class=close onclick="closeMsg('congrats')">X(close)</span>  
+        <div class='msg-box'>   
+            <h1>Congrats!!</h1>  
+            <p>Your total score is: 20</p>  
+            <button onclick="closeMsg('congrats');restart()">Restart</button>  
+        </div>  
+    </section>
+
+    <section class="quiz-container">
+        <h1>Interactive Quiz App</h1>
+        <div class="quiz-data">
+            <div class="timer-area">
+                <span>Time Left: <span id="timer">30 Seconds</span></span>
+            </div>
+
+            <div class="qa-area">
+                <div class="question-counter-area">
+                    <p>Qusestion <span id="current-q-num">3</span> out of  <span id="total-q-num">20</span></p>
+                </div>
+                <div class="question-area">
+                    <span id="question-display">Who is the president of nigeria?</span>
+                </div>
+    
+                <div class="answer-area">
+                    <button>A. Amadioha is the name of the man. But let me tell you more about the man and we are good to go</button>
+                    <button>B. Amadioha</button>
+                    <button>C. Amadioha</button>
+                    <button>D. Amadioha</button>
+                    <button>E. All of the above</button>
+                </div>
+            </div>
+
+            <div class="navigator">
+                <button id="previous-btn">Previous</button>
+                <button id="next-btn">Next</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="quiz.js" type="text/javascript"></script>
+  </body>
+</html>
