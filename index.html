@@ -46,7 +46,7 @@
         <span class=close onclick="closeMsg('congrats')">X(close)</span>  
         <div class='msg-box'>   
             <h1>Congrats!!</h1>  
-            <p>Your total score is: 20</p>  
+            <p>Your total score is: <span id="score">0</span></p>  
             <button onclick="closeMsg('congrats');restart()">Restart</button>  
         </div>  
     </section>
@@ -55,24 +55,18 @@
         <h1>Interactive Quiz App</h1>
         <div class="quiz-data">
             <div class="timer-area">
-                <span>Time Left: <span id="timer">30 Seconds</span></span>
+                <span>Time Left: <span id="timer">0 Seconds</span></span>
             </div>
 
             <div class="qa-area">
                 <div class="question-counter-area">
-                    <p>Qusestion <span id="current-q-num">3</span> out of  <span id="total-q-num">20</span></p>
+                    <p>Qusestion <span id="current-q-num">0</span> out of  <span id="total-q-num">0</span></p>
                 </div>
                 <div class="question-area">
-                    <span id="question-display">Who is the president of nigeria?</span>
+                    <span id="question-display"></span>
                 </div>
     
-                <div class="answer-area">
-                    <button>A. Amadioha is the name of the man. But let me tell you more about the man and we are good to go</button>
-                    <button>B. Amadioha</button>
-                    <button>C. Amadioha</button>
-                    <button>D. Amadioha</button>
-                    <button>E. All of the above</button>
-                </div>
+                <div class="answer-area"></div>
             </div>
 
             <div class="navigator">

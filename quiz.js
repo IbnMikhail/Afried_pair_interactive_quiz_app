@@ -24,7 +24,7 @@ function Quiz(questionsAndAnswersBank){
     this.question = this.questionsAndAnswersBank[this.currentQindex].question;
     this.answers = this.questionsAndAnswersBank[this.currentQindex].answers;
     this.correctAnswer = this.questionsAndAnswersBank[this.currentQindex].correctAnswer;
-    this.time = 30;
+    this.time = 1;
     this.score = 0;
     this.markedQindices = [];
 
@@ -37,8 +37,6 @@ function Quiz(questionsAndAnswersBank){
     }
     
     this.nextQuestion = () => {
-        console.log(this.currentQindex);
-        console.log(this.questionsAndAnswersBank.length);
         if (this.currentQindex < this.questionsAndAnswersBank.length - 1) {
             this.currentQindex++;
             this.question = this.questionsAndAnswersBank[this.currentQindex].question;
@@ -63,7 +61,9 @@ function Quiz(questionsAndAnswersBank){
     }
 
     this.markQuestion = function(){
-        this.markedQindices.push(this.currentQindex);
+        if (!this.markedQindices.find((index) => index == this.currentQindex)) {
+            this.markedQindices.push(this.currentQindex);
+        }
     }
 
 }
@@ -93,14 +93,18 @@ function startQuiz(){
     currentQNumDisplay.innerHTML = quiz.currentQindex + 1;
     totalQNumDisplay.innerHTML = quiz.questionsAndAnswersBank.length;
 
-    timingId = startTimer(timingId);
+    startTimer();
 
 }
 
-function startTimer(timingId){
-    console.log(quiz.markedQindices);
+function startTimer(){
+    if (quiz.markedQindices.length == quiz.questionsAndAnswersBank) {
+        showMsg('congrats');
+        return;
+    }
+
     if (!quiz.markedQindices.find((index) => index == quiz.currentQindex)) {
-        setInterval(() => {
+        timingId = setInterval(() => {
             quiz.timer();
             timerDisplay.innerHTML = quiz.time + " Seconds";
     
@@ -113,9 +117,6 @@ function startTimer(timingId){
     }
 }
 
-function getPreviousQuestion(){
-}
-
 let previousBtn = document.getElementById("previous-btn");
 let nextBtn = document.getElementById("next-btn");
 
@@ -125,6 +126,7 @@ previousBtn.addEventListener("click", (e) => {
     answersDisplay.innerHTML = quiz.answers.map((answer) => "<button>" + answer + "</button>");
     currentQNumDisplay.innerHTML = quiz.currentQindex + 1;
     totalQNumDisplay.innerHTML = quiz.questionsAndAnswersBank.length;
+    startTimer();
 });
 
 nextBtn.addEventListener("click", (e) => {
@@ -134,13 +136,30 @@ nextBtn.addEventListener("click", (e) => {
 
     currentQNumDisplay.innerHTML = quiz.currentQindex + 1;
     totalQNumDisplay.innerHTML = quiz.questionsAndAnswersBank.length;
+    startTimer();
+
+    console.log(quiz.score);
 });
 
 answersDisplay.addEventListener("click", (event) => {
     let choosen = event.target.innerText;
-    if (choosen == quiz.correctAnswer) {
-        showMsg('correct');
+
+    if (!quiz.markedQindices.find((index) => index == quiz.currentQindex)) {
+
+        if (quiz.time > 0) {
+            if (choosen == quiz.correctAnswer) {
+                quiz.markQuestion();
+                quiz.score += 1;
+                showMsg('correct');
+                
+            } else{
+                quiz.markQuestion();
+                showMsg('incorrect');
+            }
+        } else{
+            showMsg('timeout');
+        }
     } else{
-        showMsg('incorrect');
+        showMsg('congrats');
     }
 });

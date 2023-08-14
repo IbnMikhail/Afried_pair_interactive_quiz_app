@@ -117,7 +117,7 @@ section.msg-container#start{
     font-size: 1.5vw;
     color: yellow;
     font-weight: bold;
-    font-family: cursive;
+    font-family: sans-serif;
 }
 
 .quiz-container .quiz-data .qa-area .answer-area{
@@ -131,7 +131,7 @@ section.msg-container#start{
     padding: 10px;
     color: white;
     font-weight: bold;
-    font-family: cursive;
+    font-family: sans-serif;
 }
 
 .quiz-container .quiz-data .navigator button{
