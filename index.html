@@ -11,43 +11,43 @@
     <section class='msg-container' id='start'>  
         <div class='msg-box'>    
             <p>If you start this quiz, you can not be able to close it until completed.</p>  
-            <button onclick="closeMsg('start');startQuiz()">Start Quiz</button>  
+            <button id="btn-start-quiz">Start Quiz</button>  
         </div>  
     </section>
 
     <section class='msg-container' id='correct'>  
-        <span class=close onclick="closeMsg('correct')"> </span>  
+        <span></span>  
         <div class='msg-box'>   
             <h1>Correct!!</h1>  
             <p>Your answer is right.</p>  
-            <button onclick="closeMsg('correct');startNext()">Next</button>  
+            <button id="btn-correct-next">Next</button>  
         </div>  
     </section>
 
     <section class='msg-container' id='incorrect'>  
-        <span class=close onclick="closeMsg('incorrect')"> </span>  
+        <span class=close> </span>  
         <div class='msg-box'>   
             <h1>Incorrect!!</h1>  
             <p>Your answer is wrong.</p>  
-            <button onclick="closeMsg('incorrect');startNext()">Next</button>  
+            <button id="btn-incorrect-next">Next</button>  
         </div>  
     </section>
 
     <section class='msg-container' id='timeout'>  
-        <span class=close onclick="closeMsg('timeout')"> </span>  
+        <span class=close > </span>  
         <div class='msg-box'>   
             <h1>Timeout!!</h1>  
             <p>Sorry your time for this question has ellapsed.</p>  
-            <button onclick="closeMsg('timeout');startNext()">Next</button>  
+            <button id="btn-timeout-next">Next</button>  
         </div>  
     </section>
 
     <section class='msg-container' id='congrats'>  
-        <span class=close onclick="closeMsg('congrats')"> </span>  
+        <span class=close> </span>  
         <div class='msg-box'>   
             <h1>Congrats!!</h1>  
             <p>Your total score is: <span id="score">0</span></p>  
-            <button onclick="closeMsg('congrats');startQuiz()">Restart</button>  
+            <button id="btn-congrats-start-quiz">Restart</button>  
         </div>  
     </section>
 
@@ -76,6 +76,6 @@
         </div>
     </section>
 
-    <script src="quiz.js" type="text/javascript"></script>
+    <script src="launch-quiz.js" type="module"></script>
   </body>
 </html>
