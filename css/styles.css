@@ -52,8 +52,12 @@ section.msg-container .msg-box button{
     overflow-x: hidden;
 }
 
-section.msg-container#correct .msg-box, section.msg-container#congrats .msg-box{
+section.msg-container#correct .msg-box{
     color: green;
+}
+
+section.msg-container#congrats .msg-box{
+    color: skyblue;
 }
 
 section.msg-container#incorrect .msg-box{
@@ -89,8 +93,11 @@ section.msg-container#start{
 .quiz-container button{
     cursor: pointer;
     background-color: transparent;
-    transition: all ease-in-out;
     color: white;
+    transition: all ease-in-out;
+}
+.quiz-container button:hover{
+    background-color: green;
 }
 
 .quiz-container .quiz-data{
@@ -174,33 +181,6 @@ section.msg-container#start{
     to{
         opacity: 1.0;
         transform: rotate(360deg);
-    }
-}
-
-@keyframes fadeOut {
-    from{
-        opacity: 1;
-    }
-    to{
-        opacity: 0.0;
-    }
-}
-
-@-webkit-keyframes fadeOut{
-    from{
-        opacity: 1;
-    }
-    to{
-        opacity: 0.0;
-    }
-}
-
-@-moz-keyframes fadeIn{
-    from{
-        opacity: 1;
-    }
-    to{
-        opacity: 0.0;
     }
 }
 
