@@ -16,38 +16,38 @@
     </section>
 
     <section class='msg-container' id='correct'>  
-        <span class=close onclick="closeMsg('correct')">X(close)</span>  
+        <span class=close onclick="closeMsg('correct')"> </span>  
         <div class='msg-box'>   
             <h1>Correct!!</h1>  
             <p>Your answer is right.</p>  
-            <button onclick="closeMsg('correct')">Continue</button>  
+            <button onclick="closeMsg('correct');startNext()">Next</button>  
         </div>  
     </section>
 
     <section class='msg-container' id='incorrect'>  
-        <span class=close onclick="closeMsg('incorrect')">X(close)</span>  
+        <span class=close onclick="closeMsg('incorrect')"> </span>  
         <div class='msg-box'>   
             <h1>Incorrect!!</h1>  
             <p>Your answer is wrong.</p>  
-            <button onclick="closeMsg('incorrect')">Continue</button>  
+            <button onclick="closeMsg('incorrect');startNext()">Next</button>  
         </div>  
     </section>
 
     <section class='msg-container' id='timeout'>  
-        <span class=close onclick="closeMsg('timeout')">X(close)</span>  
+        <span class=close onclick="closeMsg('timeout')"> </span>  
         <div class='msg-box'>   
             <h1>Timeout!!</h1>  
             <p>Sorry your time for this question has ellapsed.</p>  
-            <button onclick="closeMsg('timeout')">Continue</button>  
+            <button onclick="closeMsg('timeout');startNext()">Next</button>  
         </div>  
     </section>
 
     <section class='msg-container' id='congrats'>  
-        <span class=close onclick="closeMsg('congrats')">X(close)</span>  
+        <span class=close onclick="closeMsg('congrats')"> </span>  
         <div class='msg-box'>   
             <h1>Congrats!!</h1>  
             <p>Your total score is: <span id="score">0</span></p>  
-            <button onclick="closeMsg('congrats');restart()">Restart</button>  
+            <button onclick="closeMsg('congrats');startQuiz()">Restart</button>  
         </div>  
     </section>
 
