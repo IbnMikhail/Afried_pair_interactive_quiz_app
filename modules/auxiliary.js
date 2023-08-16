@@ -2,7 +2,6 @@
 import questionsAndAnswersBank from "./questions.js";
 import Quiz from "../quiz.js";
 
-let quiz;
 const questionDisplay = document.getElementById("question-display");
 const answersDisplay = document.getElementsByClassName("answer-area")[0];
 const currentQNumDisplay = document.getElementById("current-q-num");
@@ -17,6 +16,41 @@ const btnInCorrectNext = document.getElementById("btn-incorrect-next");
 const btnTimeoutNext = document.getElementById("btn-timeout-next");
 const btnCongratsStartQuiz = document.getElementById("btn-congrats-start-quiz");
 
+let quiz;
+let timerInterval;
+let timerIsRunning = false;
+
+function stopTimer() {
+    quiz.time = 0;
+    if (timerIsRunning) {
+        clearInterval(timerInterval);
+    }
+}
+
+function startTimer(){
+    quiz.time = 10;
+
+    //console.log(quiz.markedQindices);
+
+    if (quiz.isCompletelyMarked()) {
+        scoreDisplay.innerHTML = quiz.score + "/" + quiz.totalQuestions();
+        showMsg('congrats');
+        return;
+    }
+
+    if (!timerInterval) {
+        timerInterval = setInterval(() => {
+            quiz.timeReducer();
+            timerDisplay.innerHTML = quiz.time + " Seconds";
+    
+            if (quiz.time === 0) {
+                //mark the script 0
+                quiz.markCurrentQuestion();
+                stopTimer();
+            }
+        }, 1000);
+    }
+}
 
 function showMsg(typeId) {
     document.getElementById(typeId).style.display = "block";
@@ -37,28 +71,11 @@ function startQuiz(){
     startTimer();
 }
 
-function startTimer(){
-    if (quiz.isCompletelyMarked()) {
-        scoreDisplay.innerHTML = quiz.score + "/" + quiz.totalQuestions();
-        showMsg('congrats');
-        return;
-    }
-
-    //give a new quiz time
-    quiz.time = 10;
-
-    let timingId = setInterval(() => {
-        quiz.timer();
-        timerDisplay.innerHTML = quiz.time + " Seconds";
-
-        if (quiz.time === 0) {
-            //mark the script 0
-            quiz.markCurrentQuestion();
-        }
-    }, 1000);
-
-    return timingId;
+function restartQuiz(){
+    //start new quiz
+    startQuiz();
 }
+
 
 function startNext() {
     quiz.nextQuestion();
@@ -69,9 +86,8 @@ function startNext() {
     totalQNumDisplay.innerHTML = quiz.totalQuestions();
     quiz.markPreviousQuestion();
 
-    //Ensure to clear the old counter else the time counts faster as two counters are counter running
-    let timingId = startTimer();
-    clearInterval(timingId);
+    //Ensure to stop the old counter else the time counts faster as two counters are counter running
+    startTimer();
 }
 
 function quizEvents(){
@@ -86,18 +102,21 @@ function quizEvents(){
 
     btnCorrectNext.addEventListener("click", (e) =>{
         closeMsg('correct');startNext();
+        startTimer();
     });
 
     btnInCorrectNext.addEventListener("click", (e) =>{
         closeMsg('incorrect');startNext();
+        startTimer();
     });
 
     btnTimeoutNext.addEventListener("click", (e) =>{
         closeMsg('timeout');startNext();
+        startTimer();
     });
 
     btnCongratsStartQuiz.addEventListener("click", (e) =>{
-        closeMsg('congrats');startQuiz();
+        closeMsg('congrats');restartQuiz();
     });
 
 
@@ -115,19 +134,25 @@ function quizEvents(){
     
     answersDisplay.addEventListener("click", (event) => {
         let choosen = event.target.innerText;
-    
+
         if (!quiz.isCompletelyMarked()) {
     
             if (quiz.time > 0) {
-                if (choosen == quiz.correctAnswer) {
-                    quiz.markCurrentQuestion();
-                    quiz.score += 1;
-                    showMsg('correct');
-                    
+                //Ensure that it is not marked already
+                if (!quiz.markedQindices.includes(quiz.currentQindex)) {
+                    if (choosen == quiz.correctAnswer) {
+                        quiz.markCurrentQuestion();
+                        quiz.score += 1;
+                        showMsg('correct');
+                        
+                    } else{
+                        quiz.markCurrentQuestion();
+                        showMsg('incorrect');
+                    }
                 } else{
-                    quiz.markCurrentQuestion();
-                    showMsg('incorrect');
+                    alert("Sorry this question has been marked previously. Go to next");
                 }
+                
             } else{
                 showMsg('timeout');
             }
@@ -135,6 +160,8 @@ function quizEvents(){
             scoreDisplay.innerHTML = quiz.score;
             showMsg('congrats');
         }
+
+        stopTimer();
     });
 }
 

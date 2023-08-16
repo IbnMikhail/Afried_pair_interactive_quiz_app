@@ -46,7 +46,7 @@ function Quiz(questionsAndAnswersBank){
         }
     }
 
-    this.timer = () => {
+    this.timeReducer = () => {
         if (this.time > 0) {
             this.time -= 1;
         }
@@ -54,19 +54,18 @@ function Quiz(questionsAndAnswersBank){
 
     //call this to mark the current question
     this.markCurrentQuestion = function(){
-        if (!this.markedQindices.find((index) => index == this.currentQindex)) {
+        if (!this.markedQindices.includes(this.currentQindex)) {
             this.markedQindices.push(this.currentQindex);
         }
     }
 
     this.markPreviousQuestion = function(){
-        if (this.currentQindex > 0 && !this.markedQindices.find((index) => index == this.currentQindex - 1)) {
+        if (this.currentQindex > 0 && !this.markedQindices.includes(this.currentQindex - 1)) {
             this.markedQindices.push(this.currentQindex - 1);
         }
     }
 
     this.isCompletelyMarked = () => this.markedQindices.length == this.questionsAndAnswersBank.length;
-
 }
 
 export default Quiz;
