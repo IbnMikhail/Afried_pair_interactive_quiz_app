@@ -57,7 +57,7 @@ section.msg-container#correct .msg-box{
 }
 
 section.msg-container#congrats .msg-box{
-    color: skyblue;
+    color: yellow;
 }
 
 section.msg-container#incorrect .msg-box{
